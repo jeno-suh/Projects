@@ -5,12 +5,12 @@ class MazeSolver(maze: Maze) {
     import MazeSolver._
     
     /** Array storing length of shortest path from source i.e. (0,0)*/
-    //We fill with infinity initially
+    // We fill with infinity initially
     private val dist = 
         Array.tabulate(maze.width, maze.height)((_,_) => infinity)
     
     /** Array storing backpointers to predecessor on shortest path */
-    //We fill with (-1,-1) (our 'null' maze coordinate) initially
+    // We fill with (-1,-1) (our 'null' maze coordinate) initially
     private val pred = 
         Array.tabulate(maze.width, maze.height)((_,_) => (-1,-1))
 
@@ -59,7 +59,7 @@ class MazeSolver(maze: Maze) {
         if (d == Maze.Direction.North) return (x,y+1)
         if (d == Maze.Direction.East) return (x+1,y)
         if (d == Maze.Direction.South) return (x,y-1)
-        //Since we haven't returned yet, it must be that d is West. So,
+        // Since we haven't returned yet, it must be that d is West. So,
         return (x-1,y)
     }
 

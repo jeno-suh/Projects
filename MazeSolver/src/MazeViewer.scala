@@ -131,14 +131,14 @@ class MazeViewer(private var maze: Maze, app: AutoTortoise) extends Component {
             new Line2D.Float(botLeft, topLeft)
     }
 
-    /** Return the window coordinates of the corners of the input cell where the
-      * output tuple is of the form (botLeft, topLeft, topRight, botRight) */
+    /** Return the window coordinates of the corners of the input cell where
+      * the output tuple is of the form (botLeft,topLeft,topRight,botRight) */
     private def corners(cell: (Int, Int)): (Point2D.Float, Point2D.Float,
                                             Point2D.Float, Point2D.Float) = {
         // Height and width of each cell in the maze
-        val wid = width.toFloat/maze.width; val hei = height.toFloat/maze.height
-        // The window coordinates of the corners of the cell the input is a wall
-        // of
+        val wid = width.toFloat/maze.width
+        val hei = height.toFloat/maze.height
+        // Note y isn't cell._2 because in the window, the top left is (0,0)
         val x = cell._1; val y = maze.height-1-cell._2
         val botLeft = new Point2D.Float(x * wid, (y+1) * hei)
         val topLeft = new Point2D.Float(x * wid, y * hei)
@@ -150,10 +150,12 @@ class MazeViewer(private var maze: Maze, app: AutoTortoise) extends Component {
     /** Find the cell that contains a given point or return the null cell i.e.
       * (-1,-1) */
     private def findCell(p: Point2D): (Int, Int) = {
-        //Height and width of each cell in the maze
-        val wid = width.toFloat/maze.width; val hei = height.toFloat/maze.height
+        // Height and width of each cell in the maze
+        val wid = width.toFloat/maze.width
+        val hei = height.toFloat/maze.height
         var cell = (-1,-1)
-        val x = (p.getX/wid).toInt; val y = maze.height-1 - (p.getY/hei).toInt
+        val x = (p.getX/wid).toInt
+        val y = maze.height-1 - (p.getY/hei).toInt
         if (maze.valid((x,y))) 
             cell = (x, y)
         cell

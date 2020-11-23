@@ -16,7 +16,7 @@ class AutoTortoise {
 
     /** Allow clicks on cells to select them as 'from' or 'to' */
     def select(cell: (Int, Int)) {
-        if (from == (-1, -1)) //(-1, -1) is our null cell
+        if (from == (-1, -1)) // (-1, -1) is our null cell
             from = cell
         else if (to == (-1, -1) && cell != from) 
             to = cell
@@ -84,7 +84,7 @@ class AutoTortoise {
     /** Generate a random maze */
     def generate() {
         generator.generate(maze)
-        //Default is to solve from botLeft to topRight
+        // Default is to solve from botLeft to topRight
         from = (0, 0); to = (maze.width-1, maze.height-1)
         solver = null
         frame.refresh(solver, maze)

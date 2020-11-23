@@ -5,6 +5,7 @@ import scala.collection.mutable.ListBuffer
 import scala.collection.immutable.Set
 
 /** Generate random mazes using Kruskal's algorithm */
+// findSet and union are not efficiently implemented
 class KruskalMazeGenerator extends MazeGenerator {
     private var sets = ListBuffer[Set[(Int, Int)]]()
 
@@ -17,11 +18,11 @@ class KruskalMazeGenerator extends MazeGenerator {
         var walls = maze.walls.to[ListBuffer]
         while (!walls.isEmpty) {
             val wall = walls.apply(Random.nextInt(walls.size))
-            val cell1 = (wall.x, wall.y)
-            val cell2 = maze.cellNextToWall(wall)
-            if (cell2 != None && findSet(cell1).get != findSet(cell2.get).get) {
+            val c1 = (wall.x, wall.y)
+            val c2 = maze.cellNextToWall(wall)
+            if (c2 != None && findSet(c1).get != findSet(c2.get).get) {
                 maze.removeWall(wall)
-                union(cell1, cell2.get)
+                union(c1, c2.get)
             }
             walls -= wall
         }

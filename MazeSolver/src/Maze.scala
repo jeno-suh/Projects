@@ -37,7 +37,7 @@ class Maze(_width: Int, _height: Int) {
     def addWall(wall: Wall) {
         assert(valid(wall))
         _walls.add(wall)
-        //Add wall's reflection if it exists
+        // Add wall's reflection if it exists
         if (reflect(wall) != None)
             _walls.add(reflect(wall).get)
     }
@@ -48,14 +48,14 @@ class Maze(_width: Int, _height: Int) {
     }
 
     /** Add a run (or line) of walls to the maze */
-    def addRunWall(x: Int, y: Int, runLength: Int, direction: Direction.Value) {
+    def addRunWall(x: Int, y: Int, length: Int, direction: Direction.Value) {
         if (direction == Direction.North || direction == Direction.South) {
-            for (i <- 0 until runLength) {
+            for (i <- 0 until length) {
                 addWall(x + i, y, direction)
             }
         }
         else if (direction == Direction.East || direction == Direction.West) {
-            for (i <- 0 until runLength) {
+            for (i <- 0 until length) {
                 addWall(x, y + i, direction)
             }
         }
@@ -80,7 +80,7 @@ class Maze(_width: Int, _height: Int) {
     def removeWall(wall: Wall) {
         assert(valid(wall) && !border(wall))
         _walls.remove(wall)
-        //Remove wall's reflection if it exists
+        // Remove wall's reflection if it exists
         if (reflect(wall) != None) 
             _walls.remove(reflect(wall).get)
     }
@@ -188,18 +188,19 @@ class Maze(_width: Int, _height: Int) {
 
     /** Check if a wall is a border wall */
     private def border(wall: Wall): Boolean = {
-        if (valid(wall) && ((wall.x == 0 && wall.direction == Direction.West) ||
-            (wall.x == width-1 && wall.direction == Direction.East) ||
-            (wall.y == 0 && wall.direction == Direction.South) ||
-            (wall.y == height-1 && wall.direction == Direction.North))) 
+        if (valid(wall) && 
+            ((wall.x == 0 && wall.direction == Direction.West) || 
+             (wall.x == width-1 && wall.direction == Direction.East) ||
+             (wall.y == 0 && wall.direction == Direction.South) ||
+             (wall.y == height-1 && wall.direction == Direction.North))) 
             true
         else 
             false
     }
 
     /** Reflect a wall i.e. give representation as seen from the other side */
-    // e.g. the reflection of (1, 2, Direction.North) is (1, 3, Direction.South)
-    // Note that some walls won't have reflections e.g. (0, 0, Direction.South)
+    // e.g. the reflection of (1,2,Direction.North) is (1,3,Direction.South)
+    // Note that some walls won't have reflections e.g. (0,0,Direction.South)
     private def reflect(wall: Wall): Option[Wall] = {
         assert(valid(wall))
         var reflection: Wall = null
@@ -220,7 +221,7 @@ class Maze(_width: Int, _height: Int) {
 
 object Maze {
     // We represent a wall by a coordinate and a direction 
-    // e.g. (1, 2, Direction.North) signifies a wall to the north of (1,2)
+    // e.g. (1,2,Direction.North) signifies a wall to the north of (1,2)
     case class Wall(val x: Int, val y: Int, val direction: Direction.Value)
 
     object Direction extends Enumeration {

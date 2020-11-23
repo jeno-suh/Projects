@@ -108,7 +108,7 @@ class MazeSolverRunnable(maze: Maze, from: (Int, Int), to: (Int, Int))
             cell.status = CellStatus.Solution
             cell = cell.prev
         }
-        cell.status = CellStatus.Solution // cell == source now
+        cell.status = CellStatus.Solution
     }
 }
 
