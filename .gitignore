@@ -1,2 +1,7 @@
 # ignore Scala class files
 *.class
+
+# ignore Python cache
+__pycache__/
+*.pyc
+.gitignore
