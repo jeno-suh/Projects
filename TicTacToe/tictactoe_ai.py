@@ -26,14 +26,15 @@ class TicTacToeAI(ABC):
     """A simple interface for our Tic Tac Toe AIs.
 
     Public Methods:
-    - find_move() -> Tuple[int, int]
+    - find_move() -> Option[Tuple[int, int]]
     """
     def __init__(self, game: TicTacToe) -> None:
         self._game = game
 
     @abstractmethod
-    def find_move(self) -> Tuple[int, int]:
-        """Find a legal move to make."""
+    def find_move(self) -> Option[Tuple[int, int]]:
+        """Find a legal move to make; if there is no move available
+        return None."""
         pass
     
     def _test_winning_move(self, x: int, y: int) -> bool:
@@ -63,11 +64,15 @@ class TicTacToeAI(ABC):
 class RandomAI(TicTacToeAI):
     """A TicTacToe AI that finds random moves."""
 
-    def find_move(self) -> Tuple[int, int]:
+    def find_move(self) -> Option[Tuple[int, int]]:
+        board = [[self._game.get_square(x, y) for y in range(3)] \
+                  for x in range(3)]
+        if self._game.board_full(board):
+            return None
         legal = []
         for x in range(3):
             for y in range(3):
-                if self._game.get_square(x, y) == None:
+                if board[x][y] == None:
                     legal.append((x, y))
         return random.choice(legal)
 
@@ -75,11 +80,15 @@ class WinningAI(TicTacToeAI):
     """A TicTacToe AI that finds winning moves if they exist, and
     finds random moves otherwise."""
 
-    def find_move(self) -> Tuple[int, int]:
+    def find_move(self) -> Option[Tuple[int, int]]:
+        board = [[self._game.get_square(x, y) for y in range(3)] \
+                  for x in range(3)]
+        if self._game.board_full(board):
+            return None
         legal = []
         for x in range(3):
             for y in range(3):
-                if self._game.get_square(x, y) == None:
+                if board[x][y] == None:
                     legal.append((x, y))
         me = self._game.get_turn()
         for x, y in legal:
@@ -91,7 +100,11 @@ class WinningLosingAI(TicTacToeAI):
     """A TicTacToe AI that finds winning moves if they exist, blocks
     losing moves if they exist, and otherwise plays a random move."""
 
-    def find_move(self) -> Tuple[int, int]:
+    def find_move(self) -> Option[Tuple[int, int]]:
+        board = [[self._game.get_square(x, y) for y in range(3)] \
+                  for x in range(3)]
+        if self._game.board_full(board):
+            return None
         legal = []
         for x in range(3):
             for y in range(3):
@@ -112,9 +125,11 @@ class PerfectAI(TicTacToeAI):
     """A Tic Tac Toe AI that plays perfectly using the naive minimax
     algorithm."""
 
-    def find_move(self) -> Tuple[int, int]:
+    def find_move(self) -> Option[Tuple[int, int]]:
         board = [[self._game.get_square(x, y) for y in range(3)] \
-                 for x in range(3)]
+                  for x in range(3)]
+        if self._game.board_full(board):
+            return None
         legal = []
         for x in range(3):
             for y in range(3):
@@ -270,7 +285,11 @@ class AlphaBetaPerfectAI(PerfectAI):
     """A Tic Tac Toe AI that plays perfectly and more quickly using the
     minimax algorithm with alpha-beta pruning."""
 
-    def find_move(self) -> Tuple[int, int]:
+    def find_move(self) -> Option[Tuple[int, int]]:
+        board = [[self._game.get_square(x, y) for y in range(3)] \
+                  for x in range(3)]
+        if self._game.board_full(board):
+            return None
         board = [[self._game.get_square(x, y) for y in range(3)] \
                  for x in range(3)]
         legal = []
@@ -347,7 +366,7 @@ class QuickPerfectAI(CachePerfectAI):
     """A Tic Tac Toe AI that plays perfectly and more quickly using the
     minimax algorithm with alpha-beta pruning and caching."""
 
-    def find_move(self) -> Tuple[int, int]:
+    def find_move(self) -> Option[Tuple[int, int]]:
         return AlphaBetaPerfectAI.find_move(self)
 
     def _minimax_score(self, board: Board, me: str, turn: str, alpha: int, 
@@ -387,7 +406,11 @@ class UltimateAI(QuickPerfectAI):
     this one has a higher win rate against the other imperfect AIs.
     """
 
-    def find_move(self) -> Tuple[int, int]:
+    def find_move(self) -> Option[Tuple[int, int]]:
+        board = [[self._game.get_square(x, y) for y in range(3)] \
+                  for x in range(3)]
+        if self._game.board_full(board):
+            return None
         board = [[self._game.get_square(x, y) for y in range(3)] \
                  for x in range(3)]
         legal = []

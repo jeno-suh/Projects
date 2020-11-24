@@ -61,21 +61,6 @@ class Maze(_width: Int, _height: Int) {
         }
     }
 
-    /** Fill the maze i.e. add every wall possible */
-    def fill() {
-        for (x <- 0 until width; y <- 0 until height) {
-            addWall(x, y, Direction.North)
-            addWall(x, y, Direction.East)
-        }
-        addBorders
-    }
-
-    /** Clear the maze i.e. remove every wall (besides the borders) */
-    def clear() {
-        _walls.clear()
-        addBorders
-    }
-
     /** Remove a non-border wall from the maze */
     def removeWall(wall: Wall) {
         assert(valid(wall) && !border(wall))
@@ -122,6 +107,21 @@ class Maze(_width: Int, _height: Int) {
     /** Check if a wall is a border wall */
     def isBorderWall(x: Int, y: Int, direction: Direction.Value): Boolean = {
         isBorderWall(Wall(x, y, direction))
+    }
+
+    /** Fill the maze i.e. add every wall possible */
+    def fill() {
+        for (x <- 0 until width; y <- 0 until height) {
+            addWall(x, y, Direction.North)
+            addWall(x, y, Direction.East)
+        }
+        addBorders
+    }
+
+    /** Clear the maze i.e. remove every wall (besides the borders) */
+    def clear() {
+        _walls.clear()
+        addBorders
     }
 
     /** Return the neighbours of a cell */

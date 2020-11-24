@@ -82,6 +82,21 @@ class TestMaze extends FunSuite {
         }
         assert(maze.isBorderWall(1,1,Maze.Direction.North) === false)
     }
+    test("fill") {
+        maze.fill()
+        for (x <- 0 until maze.width; y <- 0 until maze.height) {
+            assert(maze.isWall(x,y,Maze.Direction.North))
+            assert(maze.isWall(x,y,Maze.Direction.East))
+            assert(maze.isWall(x,y,Maze.Direction.South))
+            assert(maze.isWall(x,y,Maze.Direction.West))
+        }
+    }
+    test("clear") {
+        maze.clear()
+        for (w <- maze.walls) {
+            assert(maze.isBorderWall(w))
+        }
+    }
     test("neighbours") {
         // Cell in middle
         var nbs = List((1,2), (2,1), (0,1), (1,0))

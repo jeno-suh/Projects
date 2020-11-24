@@ -55,7 +55,10 @@ class TicTacToe:
     def set_square(self, x: int, y: int, piece: Piece) -> None:
         """Set the (x,y) square to the specified piece."""
         if not (piece == None or piece == "X" or piece == "O"):
-            raise ValueError("Invalid piece specified.")
+            if isinstance(piece, str):
+                raise ValueError("Invalid piece specified.")
+            else:
+                raise TypeError()
         self._board[x][y] = piece
 
     def get_turn(self) -> str:
@@ -141,8 +144,10 @@ class TicTacToe:
             self._O = player
         elif piece == "X":
             self._X = player
-        else:
+        elif isinstance(piece, str):
             raise ValueError("Invalid piece specified.")
+        else:
+            raise TypeError()
 
     def play(self) -> None:
         """Play a game of Tic Tac Toe."""
@@ -229,70 +234,71 @@ class TicTacToe:
             winner = self.find_winner(self._board)
         return winner
 
-# Code for -test flag
-parser = argparse.ArgumentParser()
-parser.add_argument("-test", action="store_true")
-args = parser.parse_args()
+if __name__ == '__main__':
+    # Code for -test flag
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-test", action="store_true")
+    args = parser.parse_args()
 
-# Retrieve who will be playing from user
-game = TicTacToe()
-ai_O = input("Who would you like to have play as O?: ")
-ai_X = input("Who would you like to have play as X?: ")
-if args.test:
-    n = int(input("How many games would you like the AIs to play?: "))
+    # Retrieve who will be playing from user
+    game = TicTacToe()
+    ai_O = input("Who would you like to have play as O?: ")
+    ai_X = input("Who would you like to have play as X?: ")
+    if args.test:
+        n = int(input("How many games would you like the AIs to play?: "))
 
-# Load in player for O
-if ai_O == "random":
-    game.load(RandomAI(game), "O")
-elif ai_O == "winning":
-    game.load(WinningAI(game), "O")
-elif ai_O == "winning-losing":
-    game.load(WinningLosingAI(game), "O")
-elif ai_O == "perfect":
-    game.load(PerfectAI(game), "O")
-elif ai_O == "cache-perfect":
-    game.load(CachePerfectAI(game), "O")
-elif ai_O == "alpha-beta":
-    game.load(AlphaBetaAI(game), "O")
-elif ai_O == "quick-perfect":
-    game.load(QuickPerfectAI(game), "O")
-elif ai_O == "ultimate":
-    game.load(UltimateAI(game), "O")
-elif ai_O != "human":
-    raise ValueError("Invalid player for O has been specified.\nPlease "
-                     + "choose from one of the following options:\n"
-                     + "- random\n- winning\n- winning-losing\n- perfect\n"
-                     + "- cache-perfect\n- alpha-beta\n- quick-perfect\n"
-                     + "- ultimate\n- human")
+    # Load in player for O
+    if ai_O == "random":
+        game.load(RandomAI(game), "O")
+    elif ai_O == "winning":
+        game.load(WinningAI(game), "O")
+    elif ai_O == "winning-losing":
+        game.load(WinningLosingAI(game), "O")
+    elif ai_O == "perfect":
+        game.load(PerfectAI(game), "O")
+    elif ai_O == "cache-perfect":
+        game.load(CachePerfectAI(game), "O")
+    elif ai_O == "alpha-beta":
+        game.load(AlphaBetaAI(game), "O")
+    elif ai_O == "quick-perfect":
+        game.load(QuickPerfectAI(game), "O")
+    elif ai_O == "ultimate":
+        game.load(UltimateAI(game), "O")
+    elif ai_O != "human":
+        raise ValueError("Invalid player for O has been specified.\nPlease "
+                        + "choose from one of the following options:\n"
+                        + "- random\n- winning\n- winning-losing\n- perfect\n"
+                        + "- cache-perfect\n- alpha-beta\n- quick-perfect\n"
+                        + "- ultimate\n- human")
 
-# Load in player for X
-if ai_X == "random":
-    game.load(RandomAI(game), "X")
-elif ai_X == "winning":
-    game.load(WinningAI(game), "X")
-elif ai_X == "winning-losing":
-    game.load(WinningLosingAI(game), "X")
-elif ai_X == "perfect":
-    game.load(PerfectAI(game), "X")
-elif ai_X == "cache-perfect":
-    game.load(CachePerfectAI(game), "X")
-elif ai_X == "alpha-beta":
-    game.load(AlphaBetaAI(game), "X")
-elif ai_X == "quick-perfect":
-    game.load(QuickPerfectAI(game), "X")
-elif ai_X == "ultimate":
-    game.load(UltimateAI(game), "X")
-elif ai_X != "human":
-    raise ValueError("Invalid player for X has been specified.\nPlease "
-                     + "choose from one of the following options:\n"
-                     + "- random\n- winning\n- winning-losing\n- perfect\n"
-                     + "- cache-perfect\n- alpha-beta\n- quick-perfect\n"
-                     + "- ultimate\n - human")
+    # Load in player for X
+    if ai_X == "random":
+        game.load(RandomAI(game), "X")
+    elif ai_X == "winning":
+        game.load(WinningAI(game), "X")
+    elif ai_X == "winning-losing":
+        game.load(WinningLosingAI(game), "X")
+    elif ai_X == "perfect":
+        game.load(PerfectAI(game), "X")
+    elif ai_X == "cache-perfect":
+        game.load(CachePerfectAI(game), "X")
+    elif ai_X == "alpha-beta":
+        game.load(AlphaBetaAI(game), "X")
+    elif ai_X == "quick-perfect":
+        game.load(QuickPerfectAI(game), "X")
+    elif ai_X == "ultimate":
+        game.load(UltimateAI(game), "X")
+    elif ai_X != "human":
+        raise ValueError("Invalid player for X has been specified.\nPlease "
+                        + "choose from one of the following options:\n"
+                        + "- random\n- winning\n- winning-losing\n- perfect\n"
+                        + "- cache-perfect\n- alpha-beta\n- quick-perfect\n"
+                        + "- ultimate\n - human")
 
-# Execute tests or play
-if args.test:
-    if ai_O == "human" or ai_X == "human":
-        raise ValueError("Cannot have a human player when running tests.")
-    game.test(n)
-else:
-    game.play()
+    # Execute tests or play
+    if args.test:
+        if ai_O == "human" or ai_X == "human":
+            raise ValueError("Cannot have a human player when running tests.")
+        game.test(n)
+    else:
+        game.play()
