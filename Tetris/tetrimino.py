@@ -158,7 +158,7 @@ class Tetrimino(Subject, ABC):
         direction, it returns False and no state is changed."""
         pass
 
-    def _rotate_helper(self, dir_: str, lst: List[Tuple[int, int]]) -> None:
+    def _rotate_helper(self, dir_: str, lst: List[Tuple[int, int]]) -> bool:
         """A helper function for the rotate method.
 
         This helper function makes the code more concise by preventing
@@ -303,7 +303,7 @@ class TetriminoS(Tetrimino):
 
     def _set_positions(self, pos: Tuple[int, int]) -> bool:
         x, y = pos
-        lst = [[(x,y), (x+1,y), (x+1,y-1), (x+2,y-1)]] * 2 \
+        lst = [[(x,y), (x+1,y-1), (x+1,y), (x+2,y-1)]] * 2 \
               + [[(x,y), (x,y+1), (x+1,y+1), (x+1,y+2)]] * 2
         return self._set_positions_helper(pos, lst)
     

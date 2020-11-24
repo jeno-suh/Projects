@@ -103,11 +103,15 @@ class PlayField(Observer, Subject):
     
     def is_empty_square(self, x: int, y: int) -> bool:
         """Return whether a square is empty."""
+        if not self.valid_square(x, y):
+            raise ValueError("Invalid square specified.")
         return self._field[x][y] == None
 
     def get_square_kind(self, x: int, y: int) -> Optional[str]:
         """Return the kind of tetrimino block the specified square is
         occupied by; if it is empty, return None."""
+        if not self.valid_square(x, y):
+            raise ValueError("Invalid square specified.")
         return self._field[x][y]
 
     def _fill_square(self, x: int, y: int, kind: str) -> None:
@@ -173,15 +177,19 @@ class PlayField(Observer, Subject):
             self._field[x][y_] = None
 
     def clear(self) -> None:
+        """Clear the field and current tetrimino."""
         for x in range(self._width):
             for y in range(self._height):
                 self._empty_square(x, y)
+        self._current_tetrimino = None
         self.notify_observers()
 
     def lock_out(self) -> bool:
         """Return whether or not a game of Tetris has been lost due to
         a lock out.
         """
+        if self._current_tetrimino == None: # Game not started
+            return False
         if self._current_tetrimino.move("down"): # Current tetrimino not set
             self._current_tetrimino.move("up")   # Restore state
             return False
