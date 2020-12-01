@@ -20,7 +20,7 @@ Project created with
 Clone this repo to your desktop and install [python3](https://www.python.org/downloads/).
 
 ## Usage
-After you clone this repo to your desktop, go to its root directory and run either `python3 tictactoe.py` or `python3 tictactoe.py -test`. 
+After you clone this repo to your desktop, go to its root directory and run either `python tictactoe.py` or `python tictactoe.py -test`. 
 
 The former is used to play a single game of Tic-Tac-Toe; the latter is used to test the effectiveness of two AIs by having them play a specified number of games against each other and reporting on the results.
 
