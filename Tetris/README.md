@@ -1,6 +1,6 @@
 # Tetris
 > An implementation of Tetris in Python
-![Preview](https://i.imgur.com/oZHcaai.png)
+![Preview](https://i.imgur.com/wJVBJkt.png)
 
 ## Table of contents
 * [General info](#general-info)

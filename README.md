@@ -1,5 +1,3 @@
-# Projects
-
 ## Project List
 * [AutoTortoise](AutoTortoise): A simple app that generates and solves mazes
 * [Chatroom](Chatroom): A simple chatroom in the terminal
