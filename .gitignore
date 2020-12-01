@@ -1,7 +1,21 @@
-# ignore Scala class files
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+# Above ignores all files without extension
+
+# Unignore Makefile
+!Makefile
+
+# Ignore Scala class files
 *.class
 
-# ignore Python cache
+# Ignore Python cache
 __pycache__/
 *.pyc
 .gitignore
