@@ -17,7 +17,7 @@ Project created with
 * Python 3.8
 
 ## Setup
-Clone this repo to your desktop and install [python3](https://www.python.org/downloads/).
+Clone this repo to your desktop and install [Python](https://www.python.org/downloads/).
 
 ## Usage
 After you clone this repo to your desktop, go to its root directory and run either `python tictactoe.py` or `python tictactoe.py -test`. 
