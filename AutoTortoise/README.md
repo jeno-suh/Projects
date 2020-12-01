@@ -14,10 +14,7 @@
 The app includes several maze-generation algorithms that users can generate mazes to solve with. This project was created to better understand object-oriented programming concepts and design patterns.
 
 ## Technologies
-Project created with
-* Scala 2.12
-
-using Scala Swing for the GUI
+Project created with Scala 2.12 using Scala Swing for the GUI
 
 ## Setup
 Clone this repo to your desktop and install [Scala](https://www.scala-lang.org/download/).

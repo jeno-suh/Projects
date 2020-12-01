@@ -13,8 +13,7 @@
 The app includes several AIs that users can play against. Users can also test the effectiveness of these AIs by playing them against each other. This project was created to get a small taste for AI programming.
 
 ## Technologies
-Project created with
-* Python 3.8
+Project created with Python 3.8
 
 ## Setup
 Clone this repo to your desktop and install [Python](https://www.python.org/downloads/).

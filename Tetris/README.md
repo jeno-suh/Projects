@@ -13,10 +13,7 @@
 This app implements Tetris mostly according to the [Tetris Guideline](https://tetris.fandom.com/wiki/Tetris_Guideline). This project was created to practice object-oriented programming concepts and to learn Python.
 
 ## Technologies
-Project created with
-* Python 3.8
-
-using Tkinter for the GUI
+Project created with Python 3.8 using Tkinter for the GUI
 
 ## Setup
 Clone this repo to your desktop and install [Python](https://www.python.org/downloads/).
