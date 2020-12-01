@@ -1,5 +1,6 @@
 # AutoTortoise
 > A simple app that generates and solves mazes
+![App Preview](https://i.imgur.com/JzhCNXE.png)
 
 ## Table of contents
 * [General info](#general-info)
