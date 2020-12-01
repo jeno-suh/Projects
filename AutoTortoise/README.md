@@ -20,7 +20,7 @@ Project created with Scala 2.12 using Scala Swing for the GUI
 Clone this repo to your desktop and install [Scala](https://www.scala-lang.org/download/).
 
 ## Usage
-After you clone this repo to your desktop, go to its root directory and run `scala -cp AutoTortoise.jar AutoTortoise`.
+After you clone this repo to your desktop, go to the project directory and run `scala -cp AutoTortoise.jar AutoTortoise`.
 
 ## Features
 * Eight algorithms to generate mazes with

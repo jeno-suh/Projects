@@ -15,7 +15,7 @@ This app allows users to chat with each other via a simple chatroom in the termi
 Project created with C using gcc 9.3 as the compiler.
 
 ## Setup
-Clone this repo to your desktop and install [gcc](https://gcc.gnu.org/install/). Then go to the root directory and run `make all`.
+Clone this repo to your desktop and install [gcc](https://gcc.gnu.org/install/). Then go to the project directory and run `make all`.
 
 ## Usage
 After setting up as above, run `./server` to set up the server and `./client` to connect once the server has been initialised.

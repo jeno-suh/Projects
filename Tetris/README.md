@@ -19,7 +19,7 @@ Project created with Python 3.8 using Tkinter for the GUI
 Clone this repo to your desktop and install [Python](https://www.python.org/downloads/).
 
 ## Usage
-After you clone this repo to your desktop, go to its root directory and run `python tetris.py`.
+After you clone this repo to your desktop, go to the project directory and run `python tetris.py`.
 
 ## Features
 Currently implemented features (besides the main game mechanics) are:
