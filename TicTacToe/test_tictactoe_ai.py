@@ -55,7 +55,7 @@ class TestTicTacToeAIs(unittest.TestCase):
         self.assertEqual(move, None)
 
     def test_winning_losing_ai(self):
-        # Winning move available
+        # Winning (and blocking) move available
         self.game._board = [["O", "X", "O"],
                             [None, "X", "X"],
                             [None, "O", "O"]]
